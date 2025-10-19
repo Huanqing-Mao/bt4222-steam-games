@@ -1,0 +1,64 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pdb
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+*.manifest
+*.spec
+
+# --- Virtual Environments ---
+.env/
+.venv/
+env/
+venv/
+ENV/
+env.bak/
+
+# --- Jupyter Notebooks ---
+.ipynb_checkpoints/
+
+# --- Logs & Temp Files ---
+*.log
+*.tmp
+*.temp
+*.bak
+*.swp
+*.DS_Store
+
+# --- IDE & Editor ---
+.vscode/
+.idea/
+*.code-workspace
+
+# --- MacOS ---
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# --- Data Files ---
+*.csv
+*.tsv
+*.json
+*.xlsx
+*.xls
+
+# --- Output / Results ---
+outputs/
+results/
+figures/
+plots/
+checkpoints/
+
+# --- Custom (project-specific) ---
+__cache__/
+*.out
+*.dat
+*.npy
+*.npz
