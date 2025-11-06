@@ -1,43 +1,54 @@
-# bt4222-steam-games
+# BT4222 Project Source Code
 
 A collection of notebooks, scripts and datasets for feature engineering and recommendation experiments on Steam game data (course project).
 
 ## Repository layout
 
 ```bash
-- src/
-  - datasets/
-    - games.csv, reviews.csv, english_reviews.csv, english_reviews_1k.csv, sentiment_1k.csv, sentiment_reviews_18oct.csv, prices.csv, purchased_games.csv, players.csv, reviews_lang_detect.csv
-  - feature-engineering/
-    - FeatureEngineering.ipynb
-    - ReviewSampling.ipynb
-    - sentiment/
-      - run_sentiment.py
-      - sentiment_analyser.py
-      - Sample1kTesting.ipynb
-  - model/
-    - ContentBasedFiltering_Final.ipynb
-    - CollaborativeBasedFiltering.ipynb
+.
+├── README.md
+└── src
+    ├── datasets # update later
+    │   ├── english_reviews_1k.csv
+    │   ├── english_reviews.csv
+    │   ├── games.csv
+    │   ├── players.csv
+    │   ├── prices.csv
+    │   ├── purchased_games.csv
+    │   ├── reviews.csv
+    │   ├── reviews_lang_detect.csv
+    │   ├── sentiment_1k.csv
+    │   └── sentiment_reviews_18oct.csv
+    ├── feature-engineering
+    │   ├── FeatureEngineering.ipynb # Addition of other features
+    │   ├── ReviewSampling.ipynb
+    │   └── sentiment # Sentiment Analysis 
+    │       ├── run_sentiment.py
+    │       ├── sentiment_analyser.py
+    │       └── Sample1kTesting.ipynb
+    └── model
+        ├── CollaborativeBasedFiltering.ipynb
+        └── ContentBasedFiltering_Final.ipynb
 
 
 ## Quick start
 
 1. Create and activate a Python virtual environment (macOS):
-```sh
+```bash
 python -m venv .venv
 source .venv/bin/activate
 ```
 
 2. Install typical dependencies used in the notebooks:
-```sh
+```bash
 pip install pandas numpy scikit-learn tqdm vaderSentiment googletrans==4.0.0-rc1 httpx langdetect emoji
 ```
 
 3. Reproduce steps
 - Open and run notebooks in `src/feature-engineering` to build and inspect features.
 - Run sentiment processing script:
-```sh
-python src/feature-engineering/sentiment/run_sentiment.py
+```bash
+python src/feature-engineering/sentiment/run_sentiment.py --input english_reviews.csv --output custome_file_name --workers 4
 ```
 - Explore modeling notebooks in `src/model` for content-based and collaborative filtering experiments.
 
