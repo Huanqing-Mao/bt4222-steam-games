@@ -55,5 +55,4 @@ python src/feature-engineering/sentiment/run_sentiment.py --input english_review
 ## Notes & recommendations
 
 - Notebooks were developed with recent Python (3.10/3.11). Adjust your environment if needed.
-- Consider adding a pinned `requirements.txt` or `environment.yml` to ensure reproducibility.
 - Datasets included in `src/datasets` are used by the notebooks — keep paths consistent when running code.
