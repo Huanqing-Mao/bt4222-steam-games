@@ -4,25 +4,31 @@ A collection of notebooks, scripts and datasets for feature engineering and reco
 
 ## Repository layout
 
-```bash
+
+```text
 .
 ├── README.md
 └── src
-    ├── datasets # update later
+    ├── datasets
+    │   ├── 2_games_prices_merged.csv
+    │   ├── 2_price_features.csv
+    │   ├── 3_purchase_features.csv
     │   ├── english_reviews_1k.csv
     │   ├── english_reviews.csv
     │   ├── games.csv
+    │   ├── games_encoded.csv
     │   ├── players.csv
     │   ├── prices.csv
     │   ├── purchased_games.csv
+    │   ├── recommendations_for_all_players.csv
     │   ├── reviews.csv
     │   ├── reviews_lang_detect.csv
     │   ├── sentiment_1k.csv
     │   └── sentiment_reviews_18oct.csv
     ├── feature-engineering
-    │   ├── FeatureEngineering.ipynb # Addition of other features
+    │   ├── FeatureEngineering.ipynb
     │   ├── ReviewSampling.ipynb
-    │   └── sentiment # Sentiment Analysis 
+    │   └── sentiment
     │       ├── run_sentiment.py
     │       ├── sentiment_analyser.py
     │       └── Sample1kTesting.ipynb
@@ -31,7 +37,7 @@ A collection of notebooks, scripts and datasets for feature engineering and reco
         └── ContentBasedFiltering_Final.ipynb
 ```
 
-## Quick start
+## Environment Set-up
 
 1. Create and activate a Python virtual environment (macOS):
 ```bash
@@ -44,12 +50,12 @@ source .venv/bin/activate
 pip install pandas numpy scikit-learn tqdm vaderSentiment googletrans==4.0.0-rc1 httpx langdetect emoji
 ```
 
-3. Reproduce steps
+## Reproduce Results
 
 - Open and run notebooks in `src/feature-engineering` to build and inspect features.
 - Run sentiment processing script:
 ```bash
-# you may customise # workers (total 3 hrs est.)
+# you may customise # workers (total 3 hrs est. for 4 workers)
 python src/feature-engineering/sentiment/run_sentiment.py --input english_reviews.csv --output custome_file_name --workers 4
 ```
 - Explore modeling notebooks in `src/model` for content-based and collaborative filtering experiments.
