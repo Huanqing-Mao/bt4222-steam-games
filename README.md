@@ -2,7 +2,8 @@
 
 A collection of notebooks, scripts and datasets for feature engineering and recommendation experiments on Steam game data (course project).
 > - Notebooks were developed with recent Python (3.10/3.11). Adjust your environment if needed.
-> - Datasets included in `src/datasets` are used by the notebooks — keep paths consistent when running code.
+> - Datasets are not uploaded to GitHub directly due to large size, raw csv files can be accessed here: [BT4222 Group 9 Datasets](https://drive.google.com/drive/u/2/folders/1Hb68lcNCnkOnZKOcPtUTXIt3K4XvaMcb)
+> - To reproduce the results, download all CSVs into a folder named `datasets` under the root directory (see file structure below).
 
 
 ## Repository layout
