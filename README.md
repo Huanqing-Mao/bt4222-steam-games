@@ -1,10 +1,11 @@
 # BT4222 Project Source Code
 
 A collection of notebooks, scripts and datasets for feature engineering and recommendation experiments on Steam game data (course project).
+> - Notebooks were developed with recent Python (3.10/3.11). Adjust your environment if needed.
+> - Datasets included in `src/datasets` are used by the notebooks — keep paths consistent when running code.
+
 
 ## Repository layout
-
-
 ```text
 .
 ├── README.md
@@ -25,6 +26,8 @@ A collection of notebooks, scripts and datasets for feature engineering and reco
     │   ├── reviews_lang_detect.csv
     │   ├── sentiment_1k.csv
     │   └── sentiment_reviews_18oct.csv
+    ├── eda
+    │   └── Dataset_Statistics.ipynb
     ├── feature-engineering
     │   ├── FeatureEngineering.ipynb
     │   ├── ReviewSampling.ipynb
@@ -59,8 +62,3 @@ pip install pandas numpy scikit-learn tqdm vaderSentiment googletrans==4.0.0-rc1
 python src/feature-engineering/sentiment/run_sentiment.py --input english_reviews.csv --output custome_file_name --workers 4
 ```
 - Explore modeling notebooks in `src/model` for content-based and collaborative filtering experiments.
-
-## Notes & recommendations
-
-> - Notebooks were developed with recent Python (3.10/3.11). Adjust your environment if needed.
-> - Datasets included in `src/datasets` are used by the notebooks — keep paths consistent when running code.
