@@ -4,6 +4,7 @@ A collection of notebooks, scripts and datasets for feature engineering and reco
 
 ## Repository layout
 
+```bash
 - src/
   - datasets/
     - games.csv, reviews.csv, english_reviews.csv, english_reviews_1k.csv, sentiment_1k.csv, sentiment_reviews_18oct.csv, prices.csv, purchased_games.csv, players.csv, reviews_lang_detect.csv
@@ -17,6 +18,7 @@ A collection of notebooks, scripts and datasets for feature engineering and reco
   - model/
     - ContentBasedFiltering_Final.ipynb
     - CollaborativeBasedFiltering.ipynb
+
 
 ## Quick start
 
