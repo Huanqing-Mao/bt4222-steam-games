@@ -51,7 +51,7 @@ source .venv/bin/activate
 
 2. Install typical dependencies used in the notebooks:
 ```bash
-pip install pandas numpy scikit-learn tqdm vaderSentiment googletrans==4.0.0-rc1 httpx langdetect emoji
+pip install pandas numpy scikit-learn tqdm vaderSentiment googletrans==4.0.0-rc1 httpx langdetect emoji yfinance
 ```
 
 ## Reproduce Results
