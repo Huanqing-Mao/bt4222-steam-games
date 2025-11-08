@@ -1,12 +1,11 @@
 # run.py
 import pandas as pd
 import numpy as np
-import torch
 from concurrent.futures import ProcessPoolExecutor, as_completed
 from tqdm import tqdm
 from sentiment_analyser import SentimentAnalyser  # your class file
 
-# ---------------- Worker Function ----------------
+
 def worker(df_chunk, worker_id):
     """
     Each process initializes its own SentimentAnalyser and computes scores
@@ -22,7 +21,6 @@ def worker(df_chunk, worker_id):
     return df_chunk
 
 
-# ---------------- Parallel Runner ----------------
 def compute_scores_parallel(df, num_workers=4):
     """
     Split the dataset into chunks, process each chunk in a separate process,
@@ -45,10 +43,8 @@ def compute_scores_parallel(df, num_workers=4):
     return combined
 
 
-# ---------------- Main Entry ----------------
 if __name__ == "__main__":
     import argparse
-    import os
 
     parser = argparse.ArgumentParser(description="Compute sentiment scores in parallel.")
     parser.add_argument("--input", type=str, required=True, help="Path to input CSV file")

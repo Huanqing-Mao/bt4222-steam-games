@@ -5,8 +5,6 @@ import torch.nn.functional as F
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 
-import nltk
-
 class SentimentAnalyser:
     def __init__(self, model="unitary/toxic-bert"):
         self.model = model
