@@ -1,65 +1,98 @@
 # BT4222 Project Source Code
 
-A collection of notebooks, scripts and datasets for feature engineering and recommendation experiments on Steam game data (course project).
-> - Notebooks were developed with recent Python (3.10/3.11). Adjust your environment if needed.
-> - Datasets are not uploaded to GitHub directly due to large size, raw csv files can be accessed here: [BT4222 Group 9 Datasets](https://drive.google.com/drive/u/2/folders/1Hb68lcNCnkOnZKOcPtUTXIt3K4XvaMcb)
-> - To reproduce the results, download all CSVs into a folder named `datasets` under the root directory (see file structure below).
+End-to-end workflow for BT4222 Group 9’s Steam games recommender: data wrangling, sentiment enrichment, feature engineering, and recommender modelling. 
 
+> Built and tested with Python 3.10/3.11 on macOS. Other recent Python versions should also work.
 
-## Repository layout
+## Table of Contents
+1. [Project Overview](#project-overview)
+2. [Dataset Access](#dataset-access)
+3. [Repository Layout](#repository-layout)
+4. [Getting Started](#getting-started)
+5. [Running the Workflow](#running-the-workflow)
+6. [Key Notebooks & Scripts](#key-notebooks--scripts)
+7. [Reproducing Results](#reproducing-results)
+8. [Project Notes](#project-notes)
+
+## Dataset Access
+
+Raw CSVs are hosted outside the repository because of size limits. Download them from the shared drive and place them under `src/datasets`:
+
+- [BT4222 Group 9 Datasets (Google Drive)](https://drive.google.com/drive/u/2/folders/1Hb68lcNCnkOnZKOcPtUTXIt3K4XvaMcb)
+- Keep filenames unchanged; the notebooks expect the naming convention shown in the repository layout.
+
+## Repository Layout
 ```text
 .
 ├── README.md
 └── src
-    ├── datasets
-    │   ├── 2_games_prices_merged.csv
-    │   ├── 2_price_features.csv
-    │   ├── 3_purchase_features.csv
-    │   ├── english_reviews_1k.csv
-    │   ├── english_reviews.csv
-    │   ├── games.csv
-    │   ├── games_encoded.csv
-    │   ├── players.csv
-    │   ├── prices.csv
-    │   ├── purchased_games.csv
-    │   ├── recommendations_for_all_players.csv
-    │   ├── reviews.csv
-    │   ├── reviews_lang_detect.csv
-    │   ├── sentiment_1k.csv
-    │   └── sentiment_reviews_18oct.csv
-    ├── eda
+    ├── datasets/                # Raw + intermediate CSVs (download separately)
+    ├── eda/
     │   └── Dataset_Statistics.ipynb
-    ├── feature-engineering
+    ├── feature-engineering/
     │   ├── FeatureEngineering.ipynb
     │   ├── ReviewSampling.ipynb
-    │   └── sentiment
+    │   └── sentiment/
     │       ├── run_sentiment.py
     │       ├── sentiment_analyser.py
     │       └── Sample1kTesting.ipynb
-    └── model
+    └── model/
         ├── CollaborativeBasedFiltering.ipynb
         └── ContentBasedFiltering_Final.ipynb
 ```
 
 ## Environment Set-up
 
-1. Create and activate a Python virtual environment (macOS):
-```bash
-python -m venv .venv
-source .venv/bin/activate
-```
+## Getting Started
 
-2. Install typical dependencies used in the notebooks:
-```bash
-pip install pandas numpy scikit-learn tqdm vaderSentiment googletrans==4.0.0-rc1 httpx langdetect emoji yfinance
-```
+1. **Set up a virtual environment (recommended)**  
+   ```bash
+   python -m venv .venv
+   source .venv/bin/activate
+   ```
 
-## Reproduce Results
+2. **Install core dependencies**  
+   ```bash
+   pip install pandas numpy scikit-learn tqdm vaderSentiment googletrans==4.0.0-rc1 httpx langdetect emoji yfinance
+   ```
 
-- Open and run notebooks in `src/feature-engineering` to build and inspect features.
-- Run sentiment processing script:
-```bash
-# you may customise # workers (total 3 hrs est. for 4 workers)
-python src/feature-engineering/sentiment/run_sentiment.py --input english_reviews.csv --output custome_file_name --workers 4
-```
-- Explore modeling notebooks in `src/model` for content-based and collaborative filtering experiments.
+3. **Download datasets** into `src/datasets` using the link above. Double-check paths inside the notebooks if you organise datasets differently.
+
+## Running the Workflow
+
+- **Exploratory analysis**: Start with `src/eda/Dataset_Statistics.ipynb` to understand the raw data distributions and missingness.
+- **Feature engineering**:
+  - Use `src/feature-engineering/ReviewSampling.ipynb` to downsample reviews for manageable experiments.
+  - Run `src/feature-engineering/FeatureEngineering.ipynb` to build player-level and game-level features, including price, engagement, and textual indicators.
+- **Sentiment enrichment**:
+  - Execute the sentiment script for large-scale processing:
+    ```bash
+    python src/feature-engineering/sentiment/run_sentiment.py \
+      --input english_reviews.csv \
+      --output sentiment_reviews_full.csv \
+      --workers 4
+    ```
+    Adjust `--workers` to match your CPU (3–4 workers ≈ 3 hours on ~1M reviews). For quick tests, use `english_reviews_1k.csv`.
+- **Modelling**:
+  - `src/model/ContentBasedFiltering_Final.ipynb` builds similarity-based recommenders using engineered features.
+  - `src/model/CollaborativeBasedFiltering.ipynb` experiments with matrix factorisation and neighbourhood-based approaches.
+
+## Key Notebooks & Scripts
+
+- **Dataset_Statistics.ipynb** – descriptive stats, missing value checks, and sanity checks for the raw tables.
+- **FeatureEngineering.ipynb** – merges purchases, prices, and reviews into analytical tables, exporting `2_price_features.csv`, `3_purchase_features.csv`, etc.
+- **ReviewSampling.ipynb** – deterministic sampling workflows for balanced sentiment analysis experiments.
+- **run_sentiment.py** – CLI entry point that farms out sentiment inference using multiprocessing; wraps `sentiment_analyser.py`.
+- **Sample1kTesting.ipynb** – tests for the sentiment pipeline on the 1k review subset.
+- **ContentBasedFiltering_Final.ipynb / CollaborativeBasedFiltering.ipynb** – evaluate recommenders, calibrate hyperparameters, and export recommendation lists (e.g., `recommendations_for_all_players.csv`).
+
+## Reproducing Results
+
+1. Download the full dataset bundle and place it in `src/datasets`.
+2. Run the sentiment script (or use the precomputed `sentiment_reviews_18oct.csv` if available).
+3. Execute feature-engineering notebooks to regenerate intermediate CSVs.
+4. Open modelling notebooks to rebuild final recommendation outputs. Results are cached to `src/datasets`.
+
+## Project Notes
+
+- The repository does not contain the datasets due to their large sizes. You can always download via the link provided above.
