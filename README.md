@@ -71,7 +71,7 @@ Raw CSVs are hosted outside the repository because of size limits. Download them
       --output sentiment_reviews_full.csv \
       --workers 4
     ```
-    Adjust `--workers` to match your CPU (3–4 workers ≈ 3 hours on ~1M reviews). For quick tests, use `english_reviews_1k.csv`.
+    Adjust `--workers` to match your CPU (3–4 workers ≈ 3 hours on ~30k reviews). For quick tests, use `english_reviews_1k.csv`.
 - **Modelling**:
   - `src/model/ContentBasedFiltering_Final.ipynb` builds similarity-based recommenders using engineered features.
   - `src/model/CollaborativeBasedFiltering.ipynb` experiments with matrix factorisation and neighbourhood-based approaches.
