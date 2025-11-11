@@ -6,10 +6,11 @@ End-to-end workflow for BT4222 Group 9’s Steam games recommender: data wrangli
 
 ## Table of Contents
 [Dataset Access](#dataset-access)  
+[Dataset Purpose and Content](#dataset-purpose-and-content)  
 [Repository Layout](#repository-layout)  
 [Getting Started](#getting-started)  
 [Running the Workflow](#running-the-workflow)  
-[Key Notebooks & Scripts](#key-notebooks--scripts)  
+[Purpose and Content of Scripts](#purpose-and-content-of-scripts)  
 [Reproducing Results](#reproducing-results)  
 [Project Notes](#project-notes)  
 
@@ -20,6 +21,27 @@ Raw CSVs are hosted outside the repository because of size limits. Download them
 - [BT4222 Group 9 Datasets (Google Drive)](https://drive.google.com/drive/u/2/folders/1Hb68lcNCnkOnZKOcPtUTXIt3K4XvaMcb)
 - Keep filenames unchanged; the notebooks expect the naming convention shown in the repository layout.
 
+## Dataset Purpose and Content
+
+- `games.csv`: Master catalog of Steam titles keyed by `gameid`, including title, developers, publishers, genres, supported languages, and release date.
+- `prices.csv`: Regional price snapshots for each `gameid` across `usd`, `eur`, `gbp`, `jpy`, and `rub`, tracked by `date_acquired`.
+- `purchased_games.csv`: Ownership table mapping each `playerid` to a serialized list of owned `gameid`s.
+- `players.csv`: Player metadata with `playerid`, `country`, and account creation timestamp.
+- `reviews.csv`: Raw review corpus with text plus engagement metadata (`helpful`, `funny`, `awards`) and `posted` date.
+- `reviews_lang_detect.csv`: Reviews with detected `language` appended for multilingual filtering (same schema as `reviews.csv` + `language`).
+- `english_reviews.csv`: Filtered subset of `reviews_lang_detect.csv` limited to reviews with `language == "en"`.
+- `english_reviews_1k.csv`: 1,000-row sample from `english_reviews.csv` for faster experimentation.
+- `sentiment_1k.csv`: The 1k English sample with an added `sentiment_score` column for quick validation.
+- `sentiment_reviews_18oct.csv`: Full English review corpus enriched with `sentiment_score` outputs from the sentiment pipeline (snapshot dated 18 Oct).
+- `games_encoded.csv`: Game metadata with cleaned genres, one-hot genre flags, and `release_age_days` for downstream modeling.
+- `2_games_prices_merged.csv`: `games_encoded.csv` joined with aggregated price metrics (`base_price`, `price_volatility`, `avg_discount`).
+- `2_price_features.csv`: Per-game pricing features derived from `prices.csv` (one row per `gameid`).
+- `3_purchase_features.csv`: Player-level purchase features including library text fields, parsed `library_list`, `library_size`, `avg_purchase_price`, and `price_coverage`.
+- `game_features_and_clusters.csv`: Scaled game features (age, price metrics, sentiment, genre flags) with assigned cluster labels (`cluster`).
+- `recommendations_for_all_players.csv`: Final recommender output with one row per suggested `gameid` and `title` for each `playerid`, including `similarity_score` and source `cluster`.
+
+
+
 ## Repository Layout
 ```text
 .
@@ -27,7 +49,7 @@ Raw CSVs are hosted outside the repository because of size limits. Download them
 └── src
     ├── datasets/                # Raw + intermediate CSVs (download separately)
     ├── eda/
-    │   └── Dataset_Statistics.ipynb
+    │   └── DatasetStatistics.ipynb
     ├── feature-engineering/
     │   ├── FeatureEngineering.ipynb
     │   ├── ReviewSampling.ipynb
@@ -58,9 +80,7 @@ Raw CSVs are hosted outside the repository because of size limits. Download them
 
 3. **Download datasets** into `src/datasets` using the link above. Double-check paths inside the notebooks if you organise datasets differently.
 ## Pipeline Workflow
-<div style="overflow-x: auto;">
-  <img src="images/pipeline.png" style="width: 1200px; max-width: none;" alt="Project Flowchart" />
-</div>
+![Project Flowchart](images/pipeline.png)
 
 ## Running the Workflow
 
@@ -81,7 +101,7 @@ Raw CSVs are hosted outside the repository because of size limits. Download them
   - `src/model/ContentBasedFiltering_Final.ipynb` builds similarity-based recommenders using engineered features.
   - `src/model/CollaborativeBasedFiltering.ipynb` experiments with matrix factorisation and neighbourhood-based approaches.
 
-## Key Notebooks & Scripts
+## Purpose and Content of Scripts
 
 - **Dataset_Statistics.ipynb** – descriptive stats, missing value checks, and sanity checks for the raw tables.
 - **FeatureEngineering.ipynb** – merges purchases, prices, and reviews into analytical tables, exporting `2_price_features.csv`, `3_purchase_features.csv`, etc.
