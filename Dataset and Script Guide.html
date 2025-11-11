@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>README.md</title>
+	<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+	<style>
+		/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+		/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+		body {
+			font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+			font-size: var(--vscode-markdown-font-size, 14px);
+			padding: 0 26px;
+			line-height: var(--vscode-markdown-line-height, 22px);
+			word-wrap: break-word;
+		}
+
+		a,
+		a:link,
+		a:visited {
+			color: var(--vscode-textLink-foreground, #4e94ce);
+		}
+
+		#code-csp-warning {
+			position: fixed;
+			top: 0;
+			right: 0;
+			color: white;
+			margin: 16px;
+			text-align: center;
+			font-size: 12px;
+			font-family: sans-serif;
+			background-color: #444444;
+			cursor: pointer;
+			padding: 6px;
+			box-shadow: 1px 1px 1px rgba(0, 0, 0, .25);
+		}
+
+		#code-csp-warning:hover {
+			text-decoration: none;
+			background-color: #007acc;
+			box-shadow: 2px 2px 2px rgba(0, 0, 0, .25);
+		}
+
+		body.scrollBeyondLastLine {
+			margin-bottom: calc(100vh - 22px);
+		}
+
+		body.showEditorSelection .code-line {
+			position: relative;
+		}
+
+		body.showEditorSelection .code-active-line:before,
+		body.showEditorSelection .code-line:hover:before {
+			content: "";
+			display: block;
+			position: absolute;
+			top: 0;
+			left: -12px;
+			height: 100%;
+		}
+
+		body.showEditorSelection li.code-active-line:before,
+		body.showEditorSelection li.code-line:hover:before {
+			left: -30px;
+		}
+
+		.vscode-light.showEditorSelection .code-active-line:before {
+			border-left: 3px solid rgba(0, 0, 0, 0.15);
+		}
+
+		.vscode-light.showEditorSelection .code-line:hover:before {
+			border-left: 3px solid rgba(0, 0, 0, 0.40);
+		}
+
+		.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+			border-left: none;
+		}
+
+		.vscode-dark.showEditorSelection .code-active-line:before {
+			border-left: 3px solid rgba(255, 255, 255, 0.4);
+		}
+
+		.vscode-dark.showEditorSelection .code-line:hover:before {
+			border-left: 3px solid rgba(255, 255, 255, 0.60);
+		}
+
+		.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+			border-left: none;
+		}
+
+		.vscode-high-contrast.showEditorSelection .code-active-line:before {
+			border-left: 3px solid rgba(255, 160, 0, 0.7);
+		}
+
+		.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+			border-left: 3px solid rgba(255, 160, 0, 1);
+		}
+
+		.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+			border-left: none;
+		}
+
+		img {
+			max-width: 100%;
+			max-height: 100%;
+		}
+
+		a {
+			text-decoration: none;
+		}
+
+		a:hover {
+			text-decoration: underline;
+		}
+
+		a:focus,
+		input:focus,
+		select:focus,
+		textarea:focus {
+			outline: 1px solid -webkit-focus-ring-color;
+			outline-offset: -1px;
+		}
+
+		hr {
+			border: 0;
+			height: 2px;
+			border-bottom: 2px solid;
+		}
+
+		h1 {
+			padding-bottom: 0.3em;
+			line-height: 1.2;
+			border-bottom-width: 1px;
+			border-bottom-style: solid;
+		}
+
+		h1,
+		h2,
+		h3 {
+			font-weight: normal;
+		}
+
+		table {
+			border-collapse: collapse;
+		}
+
+		table>thead>tr>th {
+			text-align: left;
+			border-bottom: 1px solid;
+		}
+
+		table>thead>tr>th,
+		table>thead>tr>td,
+		table>tbody>tr>th,
+		table>tbody>tr>td {
+			padding: 5px 10px;
+		}
+
+		table>tbody>tr+tr>td {
+			border-top: 1px solid;
+		}
+
+		blockquote {
+			margin: 0 7px 0 5px;
+			padding: 0 16px 0 10px;
+			border-left-width: 5px;
+			border-left-style: solid;
+		}
+
+		code {
+			font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+			font-size: 1em;
+			line-height: 1.357em;
+		}
+
+		body.wordWrap pre {
+			white-space: pre-wrap;
+		}
+
+		pre:not(.hljs),
+		pre.hljs code>div {
+			padding: 16px;
+			border-radius: 3px;
+			overflow: auto;
+			font-size: 13px;
+		}
+
+		pre code {
+			color: var(--vscode-editor-foreground);
+			tab-size: 4;
+		}
+
+		/** Theming */
+
+		.vscode-light pre {
+			background-color: rgba(220, 220, 220, 0.4);
+		}
+
+		.vscode-dark pre {
+			background-color: rgba(10, 10, 10, 0.4);
+		}
+
+		.vscode-high-contrast pre {
+			background-color: rgb(0, 0, 0);
+		}
+
+		.vscode-high-contrast h1 {
+			border-color: rgb(0, 0, 0);
+		}
+
+		.vscode-light table>thead>tr>th {
+			border-color: rgba(0, 0, 0, 0.69);
+		}
+
+		.vscode-dark table>thead>tr>th {
+			border-color: rgba(255, 255, 255, 0.69);
+		}
+
+		.vscode-light h1,
+		.vscode-light hr,
+		.vscode-light table>tbody>tr+tr>td {
+			border-color: rgba(0, 0, 0, 0.18);
+		}
+
+		.vscode-dark h1,
+		.vscode-dark hr,
+		.vscode-dark table>tbody>tr+tr>td {
+			border-color: rgba(255, 255, 255, 0.18);
+		}
+	</style>
+
+	<style>
+		/* Tomorrow Theme */
+		/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+		/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+		/* Tomorrow Comment */
+		.hljs-comment,
+		.hljs-quote {
+			color: #8e908c;
+		}
+
+		/* Tomorrow Red */
+		.hljs-variable,
+		.hljs-template-variable,
+		.hljs-tag,
+		.hljs-name,
+		.hljs-selector-id,
+		.hljs-selector-class,
+		.hljs-regexp,
+		.hljs-deletion {
+			color: #c82829;
+		}
+
+		/* Tomorrow Orange */
+		.hljs-number,
+		.hljs-built_in,
+		.hljs-builtin-name,
+		.hljs-literal,
+		.hljs-type,
+		.hljs-params,
+		.hljs-meta,
+		.hljs-link {
+			color: #f5871f;
+		}
+
+		/* Tomorrow Yellow */
+		.hljs-attribute {
+			color: #eab700;
+		}
+
+		/* Tomorrow Green */
+		.hljs-string,
+		.hljs-symbol,
+		.hljs-bullet,
+		.hljs-addition {
+			color: #718c00;
+		}
+
+		/* Tomorrow Blue */
+		.hljs-title,
+		.hljs-section {
+			color: #4271ae;
+		}
+
+		/* Tomorrow Purple */
+		.hljs-keyword,
+		.hljs-selector-tag {
+			color: #8959a8;
+		}
+
+		.hljs {
+			display: block;
+			font-family: Menlo, SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier, monospace;
+			font-size: 12px;
+			overflow-x: auto;
+			color: #4d4d4c;
+			padding: 0.5em;
+		}
+
+		.hljs-emphasis {
+			font-style: italic;
+		}
+
+		.hljs-strong {
+			font-weight: bold;
+		}
+	</style>
+
+	<style>
+		/*
+ * Markdown PDF CSS
+ */
+
+		body {
+			font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+			padding: 0 12px;
+		}
+
+		pre {
+			background-color: #f8f8f8;
+			border: 1px solid #cccccc;
+			border-radius: 3px;
+			overflow-x: auto;
+			white-space: pre-wrap;
+			overflow-wrap: break-word;
+		}
+
+		pre:not(.hljs) {
+			padding: 23px;
+			line-height: 19px;
+		}
+
+		blockquote {
+			background: rgba(127, 127, 127, 0.1);
+			border-color: rgba(0, 122, 204, 0.5);
+		}
+
+		.emoji {
+			height: 1.4em;
+		}
+
+		code {
+			font-size: 14px;
+			line-height: 19px;
+		}
+
+		/* for inline code */
+		:not(pre):not(.hljs)>code {
+			color: #4e94ce;
+			font-size: inherit;
+			background: rgba(175, 184, 193, 0.32);
+			border-radius: 4px;
+			padding: 0.15em 0.35em;
+		}
+
+		/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+		.page {
+			page-break-after: always;
+		}
+	</style>
+
+	<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+
+<body>
+	<script>
+		mermaid.initialize({
+			startOnLoad: true,
+			theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+				? 'dark'
+				: 'default'
+		});
+	</script>
+	<h1 id="bt4222-project-source-code">BT4222 Project Source Code</h1>
+	<blockquote>
+		<p>Sentiment Analysis was built and tested with Python 3.10/3.11 on macOS due to the long processing time, which
+			exceeds the maximum inactivity window on Google Colab.</p>
+	</blockquote>
+	<h2 id="table-of-contents">Table of Contents</h2>
+	<p><a href="#dataset-access">Dataset Access</a><br>
+		<a href="#dataset-purpose-and-content">Dataset Purpose and Content</a><br>
+		<a href="#repository-layout">Repository Layout</a><br>
+		<a href="#running-the-workflow">Running the Workflow</a><br>
+		<a href="#purpose-and-content-of-scripts">Purpose and Content of Scripts</a><br>
+		<a href="#reproducing-results">Reproducing Results</a><br>
+	</p>
+	<h2 id="dataset-access">Dataset Access</h2>
+	<p>Raw CSVs are hosted outside the repository because of size limits. Download them from the shared drive and place
+		them under <code>src/datasets</code>:</p>
+	<ul>
+		<li><a href="https://drive.google.com/drive/u/2/folders/1Hb68lcNCnkOnZKOcPtUTXIt3K4XvaMcb">BT4222 Group 9
+				Datasets (Google Drive)</a></li>
+		<li>Keep filenames unchanged; the notebooks expect the naming convention shown in the repository layout.</li>
+	</ul>
+	<h2 id="dataset-purpose-and-content">Dataset Purpose and Content</h2>
+	<ul>
+		<li><code>games.csv</code>: Master catalog of Steam titles keyed by <code>gameid</code>, including title,
+			developers, publishers, genres, supported languages, and release date.</li>
+		<li><code>prices.csv</code>: Regional price snapshots for each <code>gameid</code> across <code>usd</code>,
+			<code>eur</code>, <code>gbp</code>, <code>jpy</code>, and <code>rub</code>, tracked by
+			<code>date_acquired</code>.
+		</li>
+		<li><code>purchased_games.csv</code>: Ownership table mapping each <code>playerid</code> to a serialized list of
+			owned <code>gameid</code>s.</li>
+		<li><code>players.csv</code>: Player metadata with <code>playerid</code>, <code>country</code>, and account
+			creation timestamp.</li>
+		<li><code>reviews.csv</code>: Raw review corpus with text plus engagement metadata (<code>helpful</code>,
+			<code>funny</code>, <code>awards</code>) and <code>posted</code> date.
+		</li>
+		<li><code>reviews_lang_detect.csv</code>: Reviews with detected <code>language</code> appended for multilingual
+			filtering (same schema as <code>reviews.csv</code> + <code>language</code>).</li>
+		<li><code>english_reviews.csv</code>: Filtered subset of <code>reviews_lang_detect.csv</code> limited to reviews
+			with <code>language == &quot;en&quot;</code>.</li>
+		<li><code>english_reviews_1k.csv</code>: 1,000-row sample from <code>english_reviews.csv</code> for faster
+			experimentation.</li>
+		<li><code>sentiment_1k.csv</code>: The 1k English sample with an added <code>sentiment_score</code> column for
+			quick validation.</li>
+		<li><code>sentiment_reviews_18oct.csv</code>: Full English review corpus enriched with
+			<code>sentiment_score</code> outputs from the sentiment pipeline (snapshot dated 18 Oct).
+		</li>
+		<li><code>games_encoded.csv</code>: Game metadata with cleaned genres, one-hot genre flags, and
+			<code>release_age_days</code> for downstream modeling.
+		</li>
+		<li><code>2_games_prices_merged.csv</code>: <code>games_encoded.csv</code> joined with aggregated price metrics
+			(<code>base_price</code>, <code>price_volatility</code>, <code>avg_discount</code>).</li>
+		<li><code>2_price_features.csv</code>: Per-game pricing features derived from <code>prices.csv</code> (one row
+			per <code>gameid</code>).</li>
+		<li><code>3_purchase_features.csv</code>: Player-level purchase features including library text fields, parsed
+			<code>library_list</code>, <code>library_size</code>, <code>avg_purchase_price</code>, and
+			<code>price_coverage</code>.
+		</li>
+		<li><code>game_features_and_clusters.csv</code>: Scaled game features (age, price metrics, sentiment, genre
+			flags) with assigned cluster labels (<code>cluster</code>).</li>
+		<li><code>recommendations_for_all_players.csv</code>: Final recommender output with one row per suggested
+			<code>gameid</code> and <code>title</code> for each <code>playerid</code>, including
+			<code>similarity_score</code> and source <code>cluster</code>.
+		</li>
+	</ul>
+	<h2 id="repository-layout">Repository Layout</h2>
+	<pre class="hljs"><code><div>.
+├── README.md
+└── src
+    ├── datasets/                # Raw + intermediate CSVs (download separately)
+    ├── eda/
+    │   └── Dataset_Statistics.ipynb
+    ├── feature-engineering/
+    │   ├── FeatureEngineering.ipynb
+    │   ├── ReviewSampling.ipynb
+    │   └── sentiment/
+    │       ├── run_sentiment.py
+    │       ├── sentiment_analyser.py
+    │       └── Sample1kTesting.ipynb
+    └── model/
+        ├── CollaborativeBasedFiltering.ipynb
+        ├── ContentBasedFiltering_BeyondAccuracyMetrics.ipynb
+        └── ContentBasedFiltering_Final.ipynb
+</div></code></pre>
+	<h2 id="running-the-workflow">Running the Workflow</h2>
+	<ul>
+		<li><strong>Exploratory analysis</strong>: Start with <code>src/eda/Dataset_Statistics.ipynb</code> to
+			understand the raw data distributions and missingness.</li>
+		<li><strong>Feature engineering</strong>:
+			<ul>
+				<li>Use <code>src/feature-engineering/ReviewSampling.ipynb</code> to downsample reviews for manageable
+					experiments.</li>
+				<li>Run <code>src/feature-engineering/FeatureEngineering.ipynb</code> to build player-level and
+					game-level features, including price, engagement, and textual indicators.</li>
+			</ul>
+		</li>
+		<div class="page"></div>
+		<li><strong>Sentiment enrichment</strong>:
+			<ul>
+				<li>Execute the sentiment script for large-scale processing:
+					<pre class="hljs"><code><div>python src/feature-engineering/sentiment/run_sentiment.py \
+  --input english_reviews.csv \
+  --output sentiment_reviews_full.csv \
+  --workers 4
+</div></code></pre>
+					Adjust <code>--workers</code> to match your CPU (3–4 workers ≈ 3 hours on ~30k reviews). For quick
+					tests, use <code>english_reviews_1k.csv</code>.
+				</li>
+			</ul>
+		</li>
+		<li><strong>Modelling</strong>:
+			<ul>
+				<li><code>src/model/ContentBasedFiltering_Final.ipynb</code> builds similarity-based recommenders using
+					engineered features.</li>
+				<li><code>src/model/CollaborativeBasedFiltering.ipynb</code> experiments with matrix factorisation and
+					neighbourhood-based approaches.</li>
+			</ul>
+		</li>
+	</ul>
+	<h2 id="purpose-and-content-of-scripts">Purpose and Content of Scripts</h2>
+	<ul>
+		<li><strong>Dataset_Statistics.ipynb</strong> – descriptive stats, missing value checks, and sanity checks for
+			the raw tables.</li>
+		<li><strong>FeatureEngineering.ipynb</strong> – merges purchases, prices, and reviews into analytical tables,
+			exporting <code>2_price_features.csv</code>, <code>3_purchase_features.csv</code>, etc.</li>
+		<li><strong>ReviewSampling.ipynb</strong> – sampling workflows for balanced sentiment analysis experiments,
+			which includes language detection and removal of non-english reviews.</li>
+		<li><strong>run_sentiment.py</strong> – multi-processing of sentiment analysis; wraps
+			<code>sentiment_analyser.py</code> (mandatory to run locally).
+		</li>
+		<li><strong>Sample1kTesting.ipynb</strong> – tests for the sentiment pipeline on the 1k review subset.</li>
+		<li><strong>ContentBasedFiltering_Final.ipynb / CollaborativeBasedFiltering.ipynb</strong> – evaluate
+			recommenders, calibrate hyperparameters, and export recommendation lists (e.g.,
+			<code>recommendations_for_all_players.csv</code>).
+		</li>
+	</ul>
+	<h2 id="reproducing-results">Reproducing Results</h2>
+	<ol>
+		<li>Download the full dataset bundle and place it in <code>src/datasets</code>.</li>
+		<li>Run the sentiment script (or use the precomputed <code>sentiment_reviews_18oct.csv</code> if available).
+		</li>
+		<li>Execute feature-engineering notebooks to regenerate intermediate CSVs.</li>
+		<li>Open modelling notebooks to rebuild final recommendation outputs. Results are cached to
+			<code>src/datasets</code>.
+		</li>
+	</ol>
+
+</body>
+
+</html>
