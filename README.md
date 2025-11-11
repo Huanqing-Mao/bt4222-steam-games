@@ -49,7 +49,7 @@ Raw CSVs are hosted outside the repository because of size limits. Download them
 └── src
     ├── datasets/                # Raw + intermediate CSVs (download separately)
     ├── eda/
-    │   └── Dataset_Statistics.ipynb
+    │   └── DatasetStatistics.ipynb
     ├── feature-engineering/
     │   ├── FeatureEngineering.ipynb
     │   ├── ReviewSampling.ipynb
