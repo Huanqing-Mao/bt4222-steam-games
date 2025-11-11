@@ -56,6 +56,8 @@ Raw CSVs are hosted outside the repository because of size limits. Download them
    ```
 
 3. **Download datasets** into `src/datasets` using the link above. Double-check paths inside the notebooks if you organise datasets differently.
+## Pipeline Workflow
+![Project Flowchart](images/pipeline.png)
 
 ## Running the Workflow
 
