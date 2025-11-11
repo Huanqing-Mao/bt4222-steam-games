@@ -37,6 +37,7 @@ Raw CSVs are hosted outside the repository because of size limits. Download them
     │       └── Sample1kTesting.ipynb
     └── model/
         ├── CollaborativeBasedFiltering.ipynb
+        ├── ContentBasedFiltering_BeyondAccuracyMetrics.ipynb
         └── ContentBasedFiltering_Final.ipynb
 ```
 
