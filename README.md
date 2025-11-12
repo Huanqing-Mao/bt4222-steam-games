@@ -119,7 +119,7 @@ Raw CSVs are hosted outside the repository because of size limits. Download them
 - **ReviewSampling.ipynb** – sampling workflows for balanced sentiment analysis experiments, which includes language detection and removal of non-english reviews.
 - **run_sentiment.py** – multi-processing of sentiment analysis; wraps `sentiment_analyser.py` (mandatory to run locally).
 - **Sample1kTesting.ipynb** – tests for the sentiment pipeline on the 1k review subset.
-- **ContentBasedFiltering_Final.ipynb / CollaborativeBasedFiltering.ipynb** – evaluate recommenders, calibrate hyperparameters, and export recommendation lists (e.g., `recommendations_for_all_players.csv`).
+- **ContentBasedFiltering_Final.ipynb / CollaborativeBasedFiltering.ipynb / ContentBasedFiltering_BeyondAccuracyMetrics.ipynb** – evaluate recommenders, calibrate hyperparameters, and export recommendation lists (e.g., `recommendations_for_all_players.csv`).
 - **RankFusion.ipynb** – combines collaborative and content-based rankings using Reciprocal Rank Fusion (RRF) to produce a unified recommendation list.
 
 ## Reproducing Results
