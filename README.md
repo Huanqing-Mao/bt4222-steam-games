@@ -61,6 +61,7 @@ Raw CSVs are hosted outside the repository because of size limits. Download them
         ├── CollaborativeBasedFiltering.ipynb
         ├── ContentBasedFiltering_BeyondAccuracyMetrics.ipynb
         └── ContentBasedFiltering_Final.ipynb
+        └── RankFusion.ipynb
 ```
 
 ## Environment Set-up
@@ -109,6 +110,7 @@ Raw CSVs are hosted outside the repository because of size limits. Download them
 - **run_sentiment.py** – multi-processing of sentiment analysis; wraps `sentiment_analyser.py` (mandatory to run locally).
 - **Sample1kTesting.ipynb** – tests for the sentiment pipeline on the 1k review subset.
 - **ContentBasedFiltering_Final.ipynb / CollaborativeBasedFiltering.ipynb** – evaluate recommenders, calibrate hyperparameters, and export recommendation lists (e.g., `recommendations_for_all_players.csv`).
+- **RankFusion.ipynb** – combines collaborative and content-based rankings using Reciprocal Rank Fusion (RRF) to produce a unified recommendation list.
 
 ## Reproducing Results
 
