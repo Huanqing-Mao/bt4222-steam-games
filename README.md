@@ -84,7 +84,7 @@ Raw CSVs are hosted outside the repository because of size limits. Download them
 
 ## Running the Workflow
 
-- **Exploratory analysis**: Start with `src/eda/Dataset_Statistics.ipynb` to understand the raw data distributions and missingness.
+- **Exploratory analysis**: Start with `src/eda/DatasetStatistics.ipynb` to understand the raw data distributions and missingness.
 - **Feature engineering**:
   - Use `src/feature-engineering/ReviewSampling.ipynb` to downsample reviews for manageable experiments.
   - Run `src/feature-engineering/FeatureEngineering.ipynb` to build player-level and game-level features, including price, engagement, and textual indicators.
@@ -103,7 +103,7 @@ Raw CSVs are hosted outside the repository because of size limits. Download them
 
 ## Purpose and Content of Scripts
 
-- **Dataset_Statistics.ipynb** – descriptive stats, missing value checks, and sanity checks for the raw tables.
+- **DatasetStatistics.ipynb** – descriptive stats, missing value checks, and sanity checks for the raw tables.
 - **FeatureEngineering.ipynb** – merges purchases, prices, and reviews into analytical tables, exporting `2_price_features.csv`, `3_purchase_features.csv`, etc.
 - **ReviewSampling.ipynb** – sampling workflows for balanced sentiment analysis experiments, which includes language detection and removal of non-english reviews.
 - **run_sentiment.py** – multi-processing of sentiment analysis; wraps `sentiment_analyser.py` (mandatory to run locally).
