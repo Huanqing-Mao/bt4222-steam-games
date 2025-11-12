@@ -401,6 +401,7 @@
 		<li>Keep filenames unchanged; the notebooks expect the naming convention shown in the repository layout.</li>
 	</ul>
 	<h2 id="dataset-purpose-and-content">Dataset Purpose and Content</h2>
+	<h3 id="original-datasets-from-kaggle">Original datasets from Kaggle</h3>
 	<ul>
 		<li><code>games.csv</code>: Master catalog of Steam titles keyed by <code>gameid</code>, including title,
 			developers, publishers, genres, supported languages, and release date.</li>
@@ -413,8 +414,10 @@
 		<li><code>players.csv</code>: Player metadata with <code>playerid</code>, <code>country</code>, and account
 			creation timestamp.</li>
 		<li><code>reviews.csv</code>: Raw review corpus with text plus engagement metadata (<code>helpful</code>,
-			<code>funny</code>, <code>awards</code>) and <code>posted</code> date.
-		</li>
+			<code>funny</code>, <code>awards</code>) and <code>posted</code> date.</li>
+	</ul>
+	<h3 id="post-feature-engineering">Post-feature engineering</h3>
+	<ul>
 		<li><code>reviews_lang_detect.csv</code>: Reviews with detected <code>language</code> appended for multilingual
 			filtering (same schema as <code>reviews.csv</code> + <code>language</code>).</li>
 		<li><code>english_reviews.csv</code>: Filtered subset of <code>reviews_lang_detect.csv</code> limited to reviews
@@ -424,25 +427,30 @@
 		<li><code>sentiment_1k.csv</code>: The 1k English sample with an added <code>sentiment_score</code> column for
 			quick validation.</li>
 		<li><code>sentiment_reviews_18oct.csv</code>: Full English review corpus enriched with
-			<code>sentiment_score</code> outputs from the sentiment pipeline (snapshot dated 18 Oct).
-		</li>
+			<code>sentiment_score</code> outputs from the sentiment pipeline (snapshot dated 18 Oct).</li>
 		<li><code>games_encoded.csv</code>: Game metadata with cleaned genres, one-hot genre flags, and
-			<code>release_age_days</code> for downstream modeling.
-		</li>
+			<code>release_age_days</code> for downstream modeling.</li>
 		<li><code>2_games_prices_merged.csv</code>: <code>games_encoded.csv</code> joined with aggregated price metrics
 			(<code>base_price</code>, <code>price_volatility</code>, <code>avg_discount</code>).</li>
 		<li><code>2_price_features.csv</code>: Per-game pricing features derived from <code>prices.csv</code> (one row
 			per <code>gameid</code>).</li>
 		<li><code>3_purchase_features.csv</code>: Player-level purchase features including library text fields, parsed
 			<code>library_list</code>, <code>library_size</code>, <code>avg_purchase_price</code>, and
-			<code>price_coverage</code>.
-		</li>
+			<code>price_coverage</code>.</li>
+	</ul>
+	<h3 id="model-outputs-and-intermediate-datasets">Model outputs and intermediate datasets</h3>
+	<ul>
 		<li><code>game_features_and_clusters.csv</code>: Scaled game features (age, price metrics, sentiment, genre
 			flags) with assigned cluster labels (<code>cluster</code>).</li>
-		<li><code>recommendations_for_all_players.csv</code>: Final recommender output with one row per suggested
-			<code>gameid</code> and <code>title</code> for each <code>playerid</code>, including
-			<code>similarity_score</code> and source <code>cluster</code>.
-		</li>
+		<li><code>recommendations_for_all_players.csv</code>: (Content Based) Final recommender output with one row per
+			suggested <code>gameid</code> and <code>title</code> for each <code>playerid</code>, including
+			<code>similarity_score</code> and source <code>cluster</code>.</li>
+		<li><code>all_players_top10_recommendations.csv</code>: (Collaborative Based) recommender output with top 10
+			recommended <code>gameid</code>s per <code>playerid</code> based on collaborative filtering scores.</li>
+		<li><code>fused_recommendations_all_players.csv</code>: Final recommendation list combining content-based and
+			collaborative filtering outputs using Rank Fusion.</li>
+		<li><code>top_5_fused_ranks_per_player.csv</code>: Top 5 recommendations per player from the fused recommendation
+			list for players that received recommendations from both models.</li>
 	</ul>
 	<h2 id="repository-layout">Repository Layout</h2>
 	<pre class="hljs"><code><div>.
@@ -461,7 +469,8 @@
     └── model/
         ├── CollaborativeBasedFiltering.ipynb
         ├── ContentBasedFiltering_BeyondAccuracyMetrics.ipynb
-        └── ContentBasedFiltering_Final.ipynb
+        ├── ContentBasedFiltering_Final.ipynb
+        └── RankFusion.ipynb
 </div></code></pre>
 	<h2 id="running-the-workflow">Running the Workflow</h2>
 	<ul>
@@ -497,6 +506,12 @@
 					neighbourhood-based approaches.</li>
 			</ul>
 		</li>
+		<li><strong>Combining modelling outputs</strong>:
+			<ul>
+				<li><code>src/model/RankFusion.ipynb</code> combines the recommendations from content-based and
+					collaborative filtering models, recommending the top 5 games using Reciprocal Rank Fusion (RRF).</li>
+			</ul>
+		</li>
 	</ul>
 	<h2 id="purpose-and-content-of-scripts">Purpose and Content of Scripts</h2>
 	<ul>
@@ -514,6 +529,8 @@
 			recommenders, calibrate hyperparameters, and export recommendation lists (e.g.,
 			<code>recommendations_for_all_players.csv</code>).
 		</li>
+		<li><strong>RankFusion.ipynb</strong> – combines collaborative and content-based rankings using Reciprocal Rank
+			Fusion (RRF) to produce a unified recommendation list.</li>
 	</ul>
 	<h2 id="reproducing-results">Reproducing Results</h2>
 	<ol>
