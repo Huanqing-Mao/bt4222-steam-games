@@ -23,11 +23,14 @@ Raw CSVs are hosted outside the repository because of size limits. Download them
 
 ## Dataset Purpose and Content
 
+### Original datasets from Kaggle
 - `games.csv`: Master catalog of Steam titles keyed by `gameid`, including title, developers, publishers, genres, supported languages, and release date.
 - `prices.csv`: Regional price snapshots for each `gameid` across `usd`, `eur`, `gbp`, `jpy`, and `rub`, tracked by `date_acquired`.
 - `purchased_games.csv`: Ownership table mapping each `playerid` to a serialized list of owned `gameid`s.
 - `players.csv`: Player metadata with `playerid`, `country`, and account creation timestamp.
 - `reviews.csv`: Raw review corpus with text plus engagement metadata (`helpful`, `funny`, `awards`) and `posted` date.
+
+### Post-feature engineering
 - `reviews_lang_detect.csv`: Reviews with detected `language` appended for multilingual filtering (same schema as `reviews.csv` + `language`).
 - `english_reviews.csv`: Filtered subset of `reviews_lang_detect.csv` limited to reviews with `language == "en"`.
 - `english_reviews_1k.csv`: 1,000-row sample from `english_reviews.csv` for faster experimentation.
@@ -37,6 +40,8 @@ Raw CSVs are hosted outside the repository because of size limits. Download them
 - `2_games_prices_merged.csv`: `games_encoded.csv` joined with aggregated price metrics (`base_price`, `price_volatility`, `avg_discount`).
 - `2_price_features.csv`: Per-game pricing features derived from `prices.csv` (one row per `gameid`).
 - `3_purchase_features.csv`: Player-level purchase features including library text fields, parsed `library_list`, `library_size`, `avg_purchase_price`, and `price_coverage`.
+
+### Model outputs and intermediate datasets
 - `game_features_and_clusters.csv`: Scaled game features (age, price metrics, sentiment, genre flags) with assigned cluster labels (`cluster`).
 - `recommendations_for_all_players.csv`: (Content Based)Final recommender output with one row per suggested `gameid` and `title` for each `playerid`, including `similarity_score` and source `cluster`.
 - `all_players_top10_recommendations.csv`: (Collaborative Based)  recommender output with top 10 recommended `gameid`s per `playerid` based on collaborative filtering scores.
