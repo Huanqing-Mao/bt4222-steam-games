@@ -110,7 +110,7 @@ Raw CSVs are hosted outside the repository because of size limits. Download them
   - `src/model/ContentBasedFiltering_Final.ipynb` builds similarity-based recommenders using engineered features.
   - `src/model/CollaborativeBasedFiltering.ipynb` experiments with matrix factorisation and neighbourhood-based approaches.
 - **Combining Modelling Outputs for Final Recommendations**:
-    - `RankFusion` combines the recommendations from ContentBasedFiltering and CollaborativeBasedFiltering, recommending the Top 5 games using Reciprocal Rank Fusion (RRF).
+    - `RankFusion.ipynb` combines the recommendations from ContentBasedFiltering and CollaborativeBasedFiltering, recommending the Top 5 games using Reciprocal Rank Fusion (RRF).
 
 ## Purpose and Content of Scripts
 
