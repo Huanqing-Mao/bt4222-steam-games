@@ -84,7 +84,7 @@ Raw CSVs are hosted outside the repository because of size limits. Download them
 
 2. **Install core dependencies**  
    ```bash
-   pip install pandas numpy scikit-learn tqdm vaderSentiment googletrans==4.0.0-rc1 httpx langdetect emoji yfinance
+   pip install pandas numpy scikit-learn tqdm vaderSentiment googletrans==4.0.0-rc1 httpx langdetect emoji yfinance matplotlib 
    ```
 
 3. **Download datasets** into `src/datasets` using the link above. Double-check paths inside the notebooks if you organise datasets differently.
@@ -110,7 +110,7 @@ Raw CSVs are hosted outside the repository because of size limits. Download them
   - `src/model/ContentBasedFiltering_Final.ipynb` builds similarity-based recommenders using engineered features.
   - `src/model/CollaborativeBasedFiltering.ipynb` experiments with matrix factorisation and neighbourhood-based approaches.
 - **Combining Modelling Outputs for Final Recommendations**:
-    - `RankFusion.ipynb` combines the recommendations from ContentBasedFiltering and CollaborativeBasedFiltering, recommending the Top 5 games using Reciprocal Rank Fusion (RRF).
+    - `src/model/RankFusion.ipynb` combines the recommendations from ContentBasedFiltering and CollaborativeBasedFiltering, recommending the Top 5 games using Reciprocal Rank Fusion (RRF).
 
 ## Purpose and Content of Scripts
 
